@@ -1,7 +1,24 @@
 const app = require("./app");
+const db = require("./config/db");
 
 const PORT = 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+async function startServer() {
+    try {
+        const connection = await db.getConnection();
+
+        console.log("MySQL connected successfully!");
+
+        connection.release();
+
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+
+    } catch (error) {
+        console.error("Database connection failed:", error.message);
+        process.exit(1);
+    }
+}
+
+startServer();

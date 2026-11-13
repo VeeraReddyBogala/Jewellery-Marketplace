@@ -5,6 +5,9 @@ const db = require("../config/db");
 
 const router = express.Router();
 
+const jwt = require("jsonwebtoken");
+
+
 // Customer registration API
 router.post("/register", async (req, res) => {
     try {
@@ -59,5 +62,77 @@ router.post("/register", async (req, res) => {
         });
     }
 });
+
+
+ // Customer Login API
+router.post("/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and password are required"
+            });
+        }
+
+        const [customers] = await db.execute(
+            "SELECT * FROM customers WHERE email = ?",
+            [email]
+        );
+
+        if (customers.length === 0) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid email or password"
+            });
+        }
+
+        const customer = customers[0];
+
+        const isPasswordValid = await bcrypt.compare(
+            password,
+            customer.password_hash
+        );
+
+        if (!isPasswordValid) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid email or password"
+            });
+        }
+
+        const token = jwt.sign(
+            {
+                customerId: customer.customer_id,
+                role: "customer"
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "1h"
+            }
+        );
+
+        return res.status(200).json({
+            success: true,
+            message: "Customer login successful",
+            token: token,
+            customer: {
+                customer_id: customer.customer_id,
+                full_name: customer.full_name,
+                email: customer.email
+            }
+        });
+
+    } catch (error) {
+        console.error("Customer login error:", error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        });
+    }
+});
+
 
 module.exports = router;

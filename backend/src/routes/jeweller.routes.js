@@ -2,6 +2,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const db = require("../config/db");
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
@@ -87,5 +88,89 @@ router.post("/register", async (req, res) => {
         });
     }
 });
+
+// Jeweller Login API
+router.post("/login", async (req, res) => {
+    try {
+        const { phone, password } = req.body;
+
+        if (!phone || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "Phone and password are required"
+            });
+        }
+
+        // Find jeweller using phone number
+        const [jewellers] = await db.execute(
+            "SELECT * FROM jewellers WHERE phone = ?",
+            [phone]
+        );
+
+        if (jewellers.length === 0) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid phone number or password"
+            });
+        }
+
+        const jeweller = jewellers[0];
+
+        // Verify password
+        const isPasswordValid = await bcrypt.compare(
+            password,
+            jeweller.password_hash
+        );
+
+        if (!isPasswordValid) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid phone number or password"
+            });
+        }
+
+        // Check approval status
+        if (jeweller.verification_status !== "approved") {
+            return res.status(403).json({
+                success: false,
+                message: jeweller.verification_status === "pending"
+                    ? "Your account is waiting for admin approval"
+                    : "Your registration has been rejected"
+            });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign(
+            {
+                jewellerId: jeweller.jeweller_id,
+                role: "jeweller"
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "1h"
+            }
+        );
+
+        return res.status(200).json({
+            success: true,
+            message: "Jeweller login successful",
+            token: token,
+            jeweller: {
+                jeweller_id: jeweller.jeweller_id,
+                business_name: jeweller.business_name,
+                phone: jeweller.phone
+            }
+        });
+
+    } catch (error) {
+        console.error("Jeweller login error:", error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        });
+    }
+});
+
 
 module.exports = router;

@@ -8,11 +8,13 @@ app.use(express.json());
 const healthRoutes = require("./routes/health.routes");
 const customerRoutes = require("./routes/customer.routes");
 const jewellerRoutes = require("./routes/jeweller.routes");
-
+const adminRoutes = require("./routes/admin.routes");
+const productRoutes = require("./routes/product.routes");
 
 app.use("/api", healthRoutes);
 app.use("/api/customers", customerRoutes);
 app.use("/api/jewellers", jewellerRoutes);
-
+app.use("/api/admin", adminRoutes);
+app.use("/api/products", productRoutes);
 
 module.exports = app;

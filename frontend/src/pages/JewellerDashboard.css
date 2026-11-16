@@ -1,0 +1,304 @@
+
+.jeweller-dashboard {
+  min-height: 100vh;
+  background: #f8f6f2;
+  font-family: Arial, sans-serif;
+}
+
+.jeweller-navbar {
+  background: #ffffff;
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.jeweller-navbar .logo {
+  color: #29231d;
+  font-size: 26px;
+  margin: 0;
+}
+
+.jeweller-navbar .logo span {
+  color: #b58b45;
+}
+
+.jeweller-navbar button {
+  background: #29231d;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.jeweller-content {
+  max-width: 1150px;
+  margin: 40px auto;
+  padding: 0 25px;
+}
+
+.jeweller-content > h1 {
+  color: #29231d;
+  margin-bottom: 8px;
+}
+
+.jeweller-content > p {
+  color: #777;
+  margin-bottom: 30px;
+}
+
+.jeweller-content h2 {
+  color: #29231d;
+  margin-bottom: 20px;
+}
+
+/* Product management form */
+
+.product-management {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+  margin-bottom: 40px;
+}
+
+.product-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+}
+
+.product-form label {
+  color: #444;
+  font-weight: 600;
+  font-size: 14px;
+  align-self: end;
+}
+
+.product-form input,
+.product-form select,
+.product-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+  background: white;
+}
+
+.product-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.product-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.product-form-actions button {
+  background: #a77d36;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.product-form-actions button:last-child:not(:first-child) {
+  background: #555;
+}
+
+.product-form-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* My products */
+
+.my-products {
+  margin-bottom: 45px;
+}
+
+.product-management-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.managed-product-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.managed-product-card > img,
+.managed-product-placeholder {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #eee9df;
+}
+
+.managed-product-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #777;
+}
+
+.managed-product-details {
+  padding: 20px;
+}
+
+.managed-product-details h3 {
+  color: #29231d;
+  margin-top: 0;
+}
+
+.managed-product-details p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.managed-product-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.managed-product-actions button {
+  padding: 9px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  background: #a77d36;
+}
+
+.managed-product-actions button:last-child {
+  background: #c0392b;
+}
+
+/* Gold-selling enquiries */
+
+.available-enquiries {
+  margin-top: 45px;
+}
+
+.jeweller-enquiry-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.jeweller-enquiry-card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.jeweller-enquiry-card h3 {
+  color: #29231d;
+  margin-top: 0;
+}
+
+.jeweller-enquiry-card p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.jeweller-enquiry-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.jeweller-enquiry-card label {
+  color: #444;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.jeweller-enquiry-card input,
+.jeweller-enquiry-card textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.jeweller-enquiry-card textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.jeweller-enquiry-card form button {
+  background: #a77d36;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.jeweller-enquiry-card form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Messages */
+
+.jeweller-error {
+  color: #c0392b;
+  background: #fdecea;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+.jeweller-success {
+  color: #287a45;
+  background: #e8f5eb;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+/* Responsive layout */
+
+@media (max-width: 700px) {
+  .jeweller-content {
+    margin: 25px auto;
+    padding: 0 15px;
+  }
+
+  .product-form {
+    grid-template-columns: 1fr;
+  }
+
+  .product-form-actions {
+    grid-column: auto;
+    flex-wrap: wrap;
+  }
+
+  .product-management-list,
+  .jeweller-enquiry-list {
+    grid-template-columns: 1fr;
+  }
+
+  .product-management {
+    padding: 20px;
+  }
+}

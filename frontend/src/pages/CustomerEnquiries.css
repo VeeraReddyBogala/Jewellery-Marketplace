@@ -1,0 +1,142 @@
+
+.enquiries-page {
+  min-height: 100vh;
+  background: #faf7f2;
+}
+
+.enquiries-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.enquiries-navbar h2 {
+  color: #333;
+  cursor: pointer;
+}
+
+.enquiries-navbar span {
+  color: #b8860b;
+}
+
+.enquiries-navbar button,
+.enquiry-form-box button {
+  background: #8b6508;
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.enquiries-content {
+  padding: 40px 60px;
+}
+
+.enquiries-content h1 {
+  color: #493515;
+}
+
+.enquiries-content > p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.enquiry-form-box {
+  max-width: 650px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.enquiry-form-box h2,
+.my-enquiries h2 {
+  color: #8b6508;
+  margin-bottom: 20px;
+}
+
+.enquiry-form-box label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+
+.enquiry-form-box input,
+.enquiry-form-box select,
+.enquiry-form-box textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.enquiry-form-box textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.enquiry-form-box button {
+  margin-top: 20px;
+}
+
+.enquiry-form-box button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.enquiry-error {
+  color: #c0392b;
+  margin-top: 12px;
+}
+
+.enquiry-success {
+  color: #218838;
+  margin-top: 12px;
+}
+
+.my-enquiries {
+  margin-top: 45px;
+}
+
+.enquiry-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.enquiry-card {
+  background: white;
+  padding: 22px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.enquiry-card h3 {
+  color: #8b6508;
+  margin-bottom: 12px;
+}
+
+.enquiry-card p {
+  margin: 8px 0;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .enquiries-navbar {
+    padding: 20px;
+  }
+
+  .enquiries-content {
+    padding: 25px;
+  }
+
+  .enquiry-list {
+    grid-template-columns: 1fr;
+  }
+}

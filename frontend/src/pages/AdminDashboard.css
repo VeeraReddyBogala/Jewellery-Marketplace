@@ -1,0 +1,201 @@
+
+.admin-dashboard {
+  min-height: 100vh;
+  background: #f8f6f2;
+  font-family: Arial, sans-serif;
+}
+
+.admin-navbar {
+  background: #ffffff;
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.admin-navbar h2 {
+  margin: 0;
+  color: #29231d;
+  font-size: 26px;
+}
+
+.admin-navbar h2 span {
+  color: #b58b45;
+}
+
+.admin-navbar div {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.admin-navbar div span {
+  color: #555;
+  font-weight: 600;
+}
+
+.admin-navbar button {
+  background: #29231d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.admin-content {
+  max-width: 1150px;
+  margin: 40px auto;
+  padding: 0 25px;
+}
+
+.admin-content > h1 {
+  color: #29231d;
+  margin-bottom: 8px;
+}
+
+.admin-content > p {
+  color: #777;
+}
+
+.admin-summary {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.summary-card {
+  background: white;
+  padding: 22px 28px;
+  width: 260px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid #b58b45;
+}
+
+.summary-card h3 {
+  color: #666;
+  font-size: 15px;
+  margin: 0 0 12px;
+}
+
+.summary-card h2 {
+  color: #29231d;
+  font-size: 32px;
+  margin: 0;
+}
+
+.pending-section {
+  margin-top: 35px;
+}
+
+.pending-section > h2 {
+  color: #29231d;
+  margin-bottom: 20px;
+}
+
+.jeweller-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.jeweller-card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.jeweller-card h3 {
+  color: #29231d;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.jeweller-card p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.pending-status {
+  color: #a36b0a;
+  background: #fff3d6;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.approval-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.approval-actions button {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.approval-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.approve-button {
+  background: #287a45;
+}
+
+.reject-button {
+  background: #c0392b;
+}
+
+.admin-error {
+  color: #c0392b !important;
+  background: #fdecea;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+.admin-success {
+  color: #287a45 !important;
+  background: #e8f5eb;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+@media (max-width: 700px) {
+  .admin-navbar {
+    padding: 15px 20px;
+  }
+
+  .admin-navbar div {
+    gap: 10px;
+  }
+
+  .admin-navbar div span {
+    display: none;
+  }
+
+  .admin-content {
+    margin: 25px auto;
+    padding: 0 15px;
+  }
+
+  .jeweller-list {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card {
+    width: 100%;
+  }
+}
+

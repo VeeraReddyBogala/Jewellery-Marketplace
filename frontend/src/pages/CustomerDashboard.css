@@ -1,0 +1,98 @@
+
+.customer-dashboard {
+  min-height: 100vh;
+  background: #faf7f2;
+}
+
+.dashboard-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+  color: #333;
+}
+
+.logo span {
+  color: #b8860b;
+}
+
+.logout-btn {
+  background: #8b6508;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dashboard-content {
+  padding: 60px;
+}
+
+.dashboard-content h1 {
+  color: #493515;
+  margin-bottom: 10px;
+}
+
+.dashboard-content > p {
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-card h2 {
+  color: #8b6508;
+  margin-bottom: 15px;
+}
+
+.dashboard-card p {
+  color: #666;
+  line-height: 1.6;
+  min-height: 50px;
+}
+
+.dashboard-card button {
+  margin-top: 15px;
+  padding: 11px 18px;
+  background: #b8860b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dashboard-card button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .dashboard-navbar {
+    padding: 20px;
+  }
+
+  .dashboard-content {
+    padding: 25px;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+}

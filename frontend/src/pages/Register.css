@@ -1,0 +1,95 @@
+
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fffaf3;
+  padding: 30px 20px;
+}
+
+.register-box {
+  width: 100%;
+  max-width: 450px;
+  padding: 35px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.register-box h1 {
+  text-align: center;
+  color: #a16b20;
+  margin-bottom: 10px;
+}
+
+.register-box h2 {
+  text-align: center;
+  color: #4a3020;
+  margin-bottom: 8px;
+}
+
+.register-box p {
+  text-align: center;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.register-box label {
+  display: block;
+  margin: 15px 0 8px;
+  color: #4a3020;
+  font-weight: 600;
+}
+
+.register-box input,
+.register-box select,
+.register-box textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.register-box textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.register-box button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 25px;
+  background: #a16b20;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.register-box button:hover {
+  background: #805318;
+}
+
+.register-box button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.register-box .register-error {
+  color: #d32f2f;
+}
+
+.register-box .register-success {
+  color: #218838;
+}
+
+.register-box span {
+  color: #a16b20;
+  cursor: pointer;
+  font-weight: bold;
+}

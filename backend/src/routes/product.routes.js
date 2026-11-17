@@ -1,14 +1,55 @@
 
 const express = require("express");
 const db = require("../config/db");
+const redisClient = require("../config/redis");
 const verifyJeweller = require("../middleware/jeweller.middleware");
 
 const router = express.Router();
+
+const PRODUCT_CACHE_KEY = "products:public";
+const CACHE_EXPIRY = 300; // 5 minutes
+
+
+// Helper: Clear public product cache
+async function clearProductCache() {
+    try {
+        if (redisClient.isReady) {
+            await redisClient.del(PRODUCT_CACHE_KEY);
+            console.log("Product cache cleared");
+        }
+    } catch (error) {
+        console.error("Redis cache clearing error:", error.message);
+    }
+}
 
 
 // Public Product Listing API
 router.get("/", async (req, res) => {
     try {
+        // 1. Check Redis cache
+        if (redisClient.isReady) {
+            try {
+                const cachedProducts = await redisClient.get(PRODUCT_CACHE_KEY);
+
+                if (cachedProducts) {
+                    console.log("Products fetched from Redis");
+
+                    const products = JSON.parse(cachedProducts);
+
+                    return res.status(200).json({
+                        success: true,
+                        count: products.length,
+                        products: products
+                    });
+                }
+            } catch (error) {
+                console.error("Redis cache read error:", error.message);
+            }
+        }
+
+        // 2. If cache is empty, fetch from MySQL
+        console.log("Products fetched from MySQL");
+
         const [products] = await db.execute(
             `SELECT
                 p.product_id,
@@ -29,6 +70,19 @@ router.get("/", async (req, res) => {
             AND j.verification_status = 'approved'
             ORDER BY p.created_at DESC`
         );
+
+        // 3. Store products in Redis for 5 minutes
+        if (redisClient.isReady) {
+            try {
+                await redisClient.setEx(
+                    PRODUCT_CACHE_KEY,
+                    CACHE_EXPIRY,
+                    JSON.stringify(products)
+                );
+            } catch (error) {
+                console.error("Redis cache write error:", error.message);
+            }
+        }
 
         return res.status(200).json({
             success: true,
@@ -98,6 +152,9 @@ router.post("/", verifyJeweller, async (req, res) => {
                 image_url || null
             ]
         );
+
+        // Clear cache because a new product was added
+        await clearProductCache();
 
         return res.status(201).json({
             success: true,
@@ -196,6 +253,9 @@ router.patch("/:id", verifyJeweller, async (req, res) => {
             });
         }
 
+        // Clear cache because a product was updated
+        await clearProductCache();
+
         return res.status(200).json({
             success: true,
             message: "Product updated successfully"
@@ -232,6 +292,9 @@ router.delete("/:id", verifyJeweller, async (req, res) => {
             });
         }
 
+        // Clear cache because a product was deleted
+        await clearProductCache();
+
         return res.status(200).json({
             success: true,
             message: "Product deleted successfully"
@@ -246,7 +309,6 @@ router.delete("/:id", verifyJeweller, async (req, res) => {
         });
     }
 });
-
 
 
 module.exports = router;
